@@ -26,3 +26,11 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+### Start a local server
+
+Run the following command to start the server.
+
+```bash
+adinos serve --dev
+```
