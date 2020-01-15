@@ -55,6 +55,7 @@ const aliases = {}
 */
 const commands = [
   "App/Commands/ImportPokemon",
+  "App/Commands/ImportPokemonTypes",
 ]
 
 module.exports = { providers, aceProviders, aliases, commands }
