@@ -29,21 +29,6 @@ class PokemonController {
   }
 
   /**
-   * Create/save a new pokemon.
-   * POST pokemons
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request }) {
-    const data = request.only(['name', 'height', 'weight', 'has_gender_difference', 'capture_rate', 'evolves_from' , 'image'])
-    const pokemon = await Pokemon.create(data)
-
-    return pokemon
-  }
-
-  /**
    * Display a single pokemon.
    * GET pokemons/:id
    *
@@ -55,28 +40,6 @@ class PokemonController {
     const pokemon = await Pokemon.findOrFail(params.id)
 
     return transform.item(pokemon, 'PokemonTransformer.withDetails');
-  }
-
-  /**
-   * Update pokemon details.
-   * PUT or PATCH pokemons/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a pokemon with id.
-   * DELETE pokemons/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
   }
 }
 
