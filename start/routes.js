@@ -20,4 +20,4 @@ Route.post('/register', 'AuthController.register')
 
 Route.post('/authenticate', 'AuthController.authenticate')
 
-Route.get('/pokemon', 'PokemonController.index').middleware(["auth"])
+Route.resource('/pokemon', 'PokemonController')

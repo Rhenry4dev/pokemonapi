@@ -1,6 +1,8 @@
 'use strict'
 
 const Pokemon = use('App/Models/Pokemon')
+const PokemonTransformer = use('App/Transformers/PokemonTransformer')
+
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -17,12 +19,13 @@ class PokemonController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
+   * @param {Transform} ctx.transform
    */
-  async index ({ request, response, view }) {
-    const pokemons = await Pokemon.all();
+  async index ({ request, transform }) {
 
-    return pokemon;
+    const pokemons = await Pokemon.query().setVisible(['id', 'name']).paginate(request.get().page, request.get().limit);
+
+    return transform.paginate(pokemons, 'PokemonTransformer.withURL');
   }
 
   /**
@@ -48,10 +51,10 @@ class PokemonController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async show ({ params }) {
+  async show ({ params, transform }) {
     const pokemon = await Pokemon.findOrFail(params.id)
 
-    return pokemon
+    return transform.item(pokemon, 'PokemonTransformer.withDetails');
   }
 
   /**
