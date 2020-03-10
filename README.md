@@ -32,5 +32,5 @@ adonis migration:run
 Run the following command to start the server.
 
 ```bash
-adinos serve --dev
+adonis serve --dev
 ```
